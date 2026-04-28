@@ -1,0 +1,22 @@
+# A2: ResNet-18 full fine-tune
+# Ablation B: does unfreezing the backbone improve accuracy?
+_base_: base.yaml
+
+run_name: "A2_resnet18_full"
+model:
+  type: "transfer"
+  model_name: "resnet18"
+  n_classes: 50
+  finetune_strategy: "full"
+
+training:
+  n_epochs: 15
+
+optimizer:
+  name: "adamw"
+  learning_rate: 0.0001   # lower LR when fine-tuning whole backbone
+  momentum: 0.9
+  weight_decay: 0.01
+
+loss:
+  label_smoothing: 0.1

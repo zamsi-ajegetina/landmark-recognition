@@ -1,0 +1,25 @@
+# Shared defaults — overridden by experiment-specific configs
+data:
+  batch_size: 32
+  valid_size: 0.2
+  num_workers: 2
+  limit: -1
+  use_weighted_sampler: false
+  augmentation: "full"
+
+training:
+  n_epochs: 30
+  save_path: "checkpoints/{run_name}.pt"
+
+optimizer:
+  name: "adamw"
+  learning_rate: 0.001
+  momentum: 0.9
+  weight_decay: 0.01
+
+loss:
+  label_smoothing: 0.1
+
+wandb:
+  project: "african-landmark-recognition"
+  entity: null   # set to your wandb username if needed

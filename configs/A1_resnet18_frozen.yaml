@@ -1,0 +1,21 @@
+# A1: ResNet-18 head-only (transfer baseline)
+_base_: base.yaml
+
+run_name: "A1_resnet18_frozen"
+model:
+  type: "transfer"
+  model_name: "resnet18"
+  n_classes: 50
+  finetune_strategy: "frozen"
+
+training:
+  n_epochs: 50
+
+optimizer:
+  name: "adamw"
+  learning_rate: 0.001
+  momentum: 0.9
+  weight_decay: 0.01
+
+loss:
+  label_smoothing: 0.1

@@ -1,0 +1,21 @@
+# A6: ViT-B/16 head-only frozen (course mastery / architecture comparison)
+_base_: base.yaml
+
+run_name: "A6_vitb16_frozen"
+model:
+  type: "transfer"
+  model_name: "vit_b_16"
+  n_classes: 50
+  finetune_strategy: "frozen"
+
+training:
+  n_epochs: 15
+
+optimizer:
+  name: "adamw"
+  learning_rate: 0.001
+  momentum: 0.9
+  weight_decay: 0.01
+
+loss:
+  label_smoothing: 0.1

@@ -1,0 +1,19 @@
+# A0: CNN from scratch (baseline)
+_base_: base.yaml
+
+run_name: "A0_scratch"
+model:
+  type: "scratch"
+  n_classes: 50
+
+training:
+  n_epochs: 50
+
+optimizer:
+  name: "sgd"
+  learning_rate: 0.01
+  momentum: 0.9
+  weight_decay: 0.0001
+
+loss:
+  label_smoothing: 0.0

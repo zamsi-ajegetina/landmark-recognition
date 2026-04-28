@@ -1,0 +1,21 @@
+# A4: ResNet-50 full fine-tune (primary result)
+_base_: base.yaml
+
+run_name: "A4_resnet50_full"
+model:
+  type: "transfer"
+  model_name: "resnet50"
+  n_classes: 50
+  finetune_strategy: "full"
+
+training:
+  n_epochs: 30
+
+optimizer:
+  name: "adamw"
+  learning_rate: 0.0001
+  momentum: 0.9
+  weight_decay: 0.01
+
+loss:
+  label_smoothing: 0.1

@@ -1,0 +1,25 @@
+# A8: ResNet-50 full fine-tune with WeightedRandomSampler
+# Ablation A: does fixing the sampler bug improve macro-F1 on imbalanced classes?
+_base_: base.yaml
+
+run_name: "A8_resnet50_weighted"
+model:
+  type: "transfer"
+  model_name: "resnet50"
+  n_classes: 50
+  finetune_strategy: "full"
+
+data:
+  use_weighted_sampler: true
+
+training:
+  n_epochs: 15
+
+optimizer:
+  name: "adamw"
+  learning_rate: 0.0001
+  momentum: 0.9
+  weight_decay: 0.01
+
+loss:
+  label_smoothing: 0.1

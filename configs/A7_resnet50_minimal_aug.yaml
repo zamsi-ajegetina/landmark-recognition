@@ -1,0 +1,25 @@
+# A7: ResNet-50 full fine-tune with minimal augmentation
+# Ablation C: does heavy augmentation help or hurt when colour is a landmark cue?
+_base_: base.yaml
+
+run_name: "A7_resnet50_minimal_aug"
+model:
+  type: "transfer"
+  model_name: "resnet50"
+  n_classes: 50
+  finetune_strategy: "full"
+
+data:
+  augmentation: "minimal"
+
+training:
+  n_epochs: 15
+
+optimizer:
+  name: "adamw"
+  learning_rate: 0.0001
+  momentum: 0.9
+  weight_decay: 0.01
+
+loss:
+  label_smoothing: 0.1
