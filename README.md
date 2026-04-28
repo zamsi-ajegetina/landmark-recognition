@@ -25,7 +25,7 @@ A systematic study comparing CNN-from-scratch and fine-tuned pretrained architec
 ## Setup
 
 ```bash
-git clone https://github.com/<your-username>/african-landmark-recognition.git
+git clone https://github.com/zamsi-ajegetina/landmark-recognition.git
 cd african-landmark-recognition
 
 python -m venv .venv && source .venv/bin/activate
@@ -109,7 +109,7 @@ Training notebooks:
 
 Quick start in Colab:
 ```python
-!git clone https://github.com/<your-username>/african-landmark-recognition.git
+!git clone https://github.com/zamsi-ajegetina/landmark-recognition.git
 %cd african-landmark-recognition
 !pip install -r requirements.txt
 !python ablation_runner.py --config configs/A4_resnet50_full.yaml
