@@ -122,6 +122,16 @@ def main():
     save_path = save_path_template.format(run_name=run_name)
     os.makedirs(Path(save_path).parent, exist_ok=True)
 
+    # Google Drive backup — auto-detected when Drive is mounted on Colab
+    drive_checkpoint_dir = Path("/content/drive/MyDrive/checkpoints")
+    backup_path = None
+    if drive_checkpoint_dir.parent.exists():
+        drive_checkpoint_dir.mkdir(parents=True, exist_ok=True)
+        backup_path = str(drive_checkpoint_dir / Path(save_path).name)
+        print(f"Google Drive backup enabled: {backup_path}")
+    else:
+        print("Google Drive not mounted — checkpoints saved locally only.")
+
     # wandb init
     use_wandb = _WANDB_AVAILABLE and not args.no_wandb
     if use_wandb:
@@ -135,7 +145,7 @@ def main():
 
     # Train
     n_epochs = train_cfg.get("n_epochs", 30)
-    optimize(data_loaders, model, optimizer, loss_fn, n_epochs, save_path)
+    optimize(data_loaders, model, optimizer, loss_fn, n_epochs, save_path, backup_path=backup_path)
 
     # Evaluate on test set
     print("\n--- Test Evaluation ---")

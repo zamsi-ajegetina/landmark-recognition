@@ -1,5 +1,4 @@
-import tempfile
-
+import shutil
 import torch
 import numpy as np
 from tqdm import tqdm
@@ -56,10 +55,12 @@ def valid_one_epoch(valid_dataloader, model, loss):
     return valid_loss
 
 
-def optimize(data_loaders, model, optimizer, loss, n_epochs, save_path, interactive_tracking=False):
+def optimize(data_loaders, model, optimizer, loss, n_epochs, save_path, backup_path=None):
     """
     Full training loop with validation, early stopping, LR scheduling, and wandb logging.
     Saves the model checkpoint whenever validation loss improves by >1%.
+    If backup_path is set (e.g. a Google Drive path), the checkpoint is also copied there
+    immediately after each save so progress is not lost on Colab disconnects.
     """
     scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=n_epochs)
 
@@ -83,6 +84,9 @@ def optimize(data_loaders, model, optimizer, loss, n_epochs, save_path, interact
             print(f"  => Validation loss improved ({valid_loss:.4f}). Saving checkpoint.")
             torch.save(model.state_dict(), save_path)
             valid_loss_min = valid_loss
+            if backup_path:
+                shutil.copy2(save_path, backup_path)
+                print(f"  => Backed up to {backup_path}")
 
         scheduler.step()
 
