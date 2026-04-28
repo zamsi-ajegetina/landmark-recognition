@@ -1,6 +1,6 @@
 # Shared defaults — overridden by experiment-specific configs
 data:
-  batch_size: 32
+  batch_size: 128
   valid_size: 0.2
   num_workers: 2
   limit: -1
