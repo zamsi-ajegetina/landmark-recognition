@@ -47,7 +47,6 @@ def get_data_loaders(
             transforms.Normalize(mean, std),
         ])
     else:
-        # minimal: only spatial flipping, no colour manipulation
         train_transform = transforms.Compose([
             transforms.Resize(256),
             transforms.CenterCrop(224),

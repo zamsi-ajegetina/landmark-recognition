@@ -1,4 +1,4 @@
-# A6: ViT-B/16 head-only frozen (course mastery / architecture comparison)
+# A6: ViT-B/16 head-only frozen 
 _base_: base.yaml
 
 run_name: "A6_vitb16_frozen"

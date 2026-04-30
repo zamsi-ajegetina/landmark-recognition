@@ -1,4 +1,3 @@
-# Shared defaults — overridden by experiment-specific configs
 data:
   batch_size: 128
   valid_size: 0.2
@@ -22,4 +21,4 @@ loss:
 
 wandb:
   project: "african-landmark-recognition"
-  entity: null   # set to your wandb username if needed
+  entity: null  

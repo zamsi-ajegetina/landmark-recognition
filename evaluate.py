@@ -31,7 +31,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 
 from src.data import get_data_loaders
 from src.helpers import compute_mean_and_std
-from src.model import MyModel
+from src.model import CustomModel
 from src.optimization import get_loss
 from src.train import one_epoch_test
 from src.transfer import get_model_transfer_learning
@@ -39,7 +39,7 @@ from src.transfer import get_model_transfer_learning
 
 def load_model(args) -> torch.nn.Module:
     if args.scratch:
-        model = MyModel(num_classes=args.n_classes)
+        model = CustomModel(num_classes=args.n_classes)
     else:
         model = get_model_transfer_learning(
             model_name=args.model_name,
@@ -122,7 +122,7 @@ def main():
     parser.add_argument("--checkpoint", required=True, help="Path to .pt checkpoint")
     parser.add_argument("--model-name", default="resnet50", help="torchvision model name")
     parser.add_argument("--n-classes", type=int, default=50, help="Number of output classes")
-    parser.add_argument("--scratch", action="store_true", help="Use MyModel (CNN from scratch)")
+    parser.add_argument("--scratch", action="store_true", help="Use CustomModel (CNN from scratch)")
     parser.add_argument("--image", default=None, help="Single image to classify")
     parser.add_argument("--top-k", type=int, default=5, help="Top-k predictions for single image mode")
     args = parser.parse_args()

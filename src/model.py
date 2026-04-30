@@ -3,8 +3,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 
-# define the CNN architecture
-class MyModel(nn.Module):
+class CustomModel(nn.Module):
     def __init__(self, num_classes: int = 1000, dropout: float = 0.7) -> None:
 
         super().__init__()

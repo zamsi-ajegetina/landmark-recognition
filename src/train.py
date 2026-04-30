@@ -58,9 +58,6 @@ def valid_one_epoch(valid_dataloader, model, loss):
 def optimize(data_loaders, model, optimizer, loss, n_epochs, save_path, backup_path=None):
     """
     Full training loop with validation, early stopping, LR scheduling, and wandb logging.
-    Saves the model checkpoint whenever validation loss improves by >1%.
-    If backup_path is set (e.g. a Google Drive path), the checkpoint is also copied there
-    immediately after each save so progress is not lost on Colab disconnects.
     """
     scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=n_epochs)
 
