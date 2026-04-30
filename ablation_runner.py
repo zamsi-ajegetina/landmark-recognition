@@ -4,7 +4,7 @@ Config-driven ablation runner.
 Usage:
     python ablation_runner.py --config configs/A4_resnet50_full.yaml
     python ablation_runner.py --config configs/A4_resnet50_full.yaml --no-wandb
-    python ablation_runner.py --config configs/A0_scratch.yaml --limit 500  # quick smoke test
+    python ablation_runner.py --config configs/A0_scratch.yaml --limit 500 
 """
 
 import argparse
@@ -20,7 +20,7 @@ from sklearn.metrics import f1_score, classification_report
 sys.path.insert(0, str(Path(__file__).parent))
 
 from src.data import get_data_loaders
-from src.model import MyModel
+from src.model import CustomModel
 from src.transfer import get_model_transfer_learning
 from src.optimization import get_loss, get_optimizer
 from src.train import optimize, one_epoch_test
@@ -62,7 +62,7 @@ def load_config(config_path: str) -> dict:
 def build_model(cfg: dict) -> torch.nn.Module:
     model_cfg = cfg["model"]
     if model_cfg["type"] == "scratch":
-        return MyModel(num_classes=model_cfg["n_classes"])
+        return CustomModel(num_classes=model_cfg["n_classes"])
     elif model_cfg["type"] == "transfer":
         return get_model_transfer_learning(
             model_name=model_cfg["model_name"],
