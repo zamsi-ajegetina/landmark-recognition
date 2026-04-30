@@ -10,15 +10,13 @@ A systematic study comparing CNN-from-scratch and fine-tuned pretrained architec
 
 | Run | Architecture | Strategy | Augmentation | Epochs | Top-1 | Top-5 | Macro-F1 |
 |-----|-------------|----------|-------------|--------|-------|-------|----------|
-| A0  | MyModel (VGG-3) | scratch | full | 50 | — | — | — |
-| A1  | ResNet-18 | head-only | full | 50 | — | — | — |
-| A2  | ResNet-18 | full fine-tune | full | 15 | — | — | — |
-| A4  | ResNet-50 | full fine-tune | full | 30 | — | — | — |
-| A6  | ViT-B/16 | head-only | full | 15 | — | — | — |
-| A7  | ResNet-50 | full fine-tune | minimal | 15 | — | — | — |
-| A8  | ResNet-50 | full fine-tune + WRS | full | 15 | — | — | — |
-
-*Results populated after training completes. Live metrics: [Weights & Biases project](#).*
+| A0  | CustomModel (VGG-3) | scratch | full | 50 | 34.2% | 65.0% | 30.0% |
+| A1  | ResNet-18 | head-only | full | 50 | 73.1% | 92.1% | 72.9% |
+| A2  | ResNet-18 | full fine-tune | full | 15 | 81.1% | 93.7% | 81.2% |
+| **A4** | **ResNet-50** | **full fine-tune** | **full** | **30** | **85.4%** | **94.7%** | **85.3%** |
+| A6  | ViT-B/16 | head-only | full | 15 | 82.4% | 94.6% | 82.2% |
+| A7  | ResNet-50 | full fine-tune | minimal | 15 | 84.3% | 95.1% | 84.3% |
+| A8  | ResNet-50 | full fine-tune + WRS | full | 15 | 69.8% | 76.8% | 63.2% |
 
 ---
 
@@ -124,7 +122,7 @@ african-landmark-recognition/
 ├── configs/              # YAML experiment configs (one per ablation run)
 ├── src/
 │   ├── data.py           # Data loaders with augmentation + WeightedRandomSampler
-│   ├── model.py          # CNN from scratch (MyModel)
+│   ├── model.py          # CNN from scratch (CustomModel)
 │   ├── transfer.py       # Pretrained model setup (ResNet, ViT, EfficientNet)
 │   ├── optimization.py   # Loss (with label smoothing) and optimizer factory
 │   ├── train.py          # Training loop with wandb logging + Top-5 metrics
@@ -154,5 +152,5 @@ Pre-trained checkpoints are available on HuggingFace Hub:
 - Experiment tracking: [Weights & Biases](https://wandb.ai)
 - GradCAM: [torchcam](https://github.com/frgfm/torch-cam)
 
-This project was developed with assistance from Claude Code (Anthropic) and GitHub Copilot.
+This project was developed with assistance from Claude(Anthropic).
 # landmark-recognition
