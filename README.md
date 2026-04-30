@@ -141,7 +141,7 @@ african-landmark-recognition/
 ## Model Weights
 
 Pre-trained checkpoints are available on HuggingFace Hub:
-*(link to be added after training)*
+[Checkpoints](https://drive.google.com/drive/folders/1S80KaXhe-aty3uliVmSe7dZ8C2sj-K49?usp=sharing)
 
 ---
 
@@ -153,4 +153,3 @@ Pre-trained checkpoints are available on HuggingFace Hub:
 - GradCAM: [torchcam](https://github.com/frgfm/torch-cam)
 
 This project was developed with assistance from Claude(Anthropic).
-# landmark-recognition
